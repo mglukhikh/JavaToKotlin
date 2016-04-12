@@ -38,35 +38,32 @@ class FourInRow(private val width: Int = 7, private val height: Int = 6, private
         return null
     }
 
-    fun hasFreeCells(): Boolean {
-        for (x in 0..width - 1) {
-            for (y in 0..height - 1) {
-                if (this[x, y] == null) return true
-            }
-        }
-        return false
+    private fun allCells() = generateSequence(Cell(0, 0)) {
+        if (it.x < width - 1) Cell(it.x + 1, it.y)
+        else if (it.y < height - 1) Cell(0, it.y + 1)
+        else null
     }
+
+    fun hasFreeCells() = allCells().any { this[it] == null }
 
     private val directions = arrayOf(Cell(0, 1), Cell(1, 0), Cell(1, 1), Cell(1, -1))
 
     private fun correct(cell: Cell) = cell.x >= 0 && cell.x < width && cell.y >= 0 && cell.y < height
 
+    private fun directionSequence(start: Cell, dir: Cell) = generateSequence(start) {
+        (start + dir).let {
+            if (correct(it)) it
+            else null
+        }
+    }
+
     fun winner(): Chip? {
-        for (x in 0..width - 1) {
-            for (y in 0..height - 1) {
-                val cell = Cell(x, y)
-                val start = this[cell] ?: continue
-                for (dir in directions) {
-                    var length = 0
-                    var current = cell
-                    while (++length < winLength) {
-                        current += dir
-                        if (!correct(current)) break
-                        if (this[current] != start) break
-                    }
-                    if (length == winLength) {
-                        return start
-                    }
+        allCells().forEach {
+            cell -> val chip = this[cell] ?: return@forEach
+            for (dir in directions) {
+                directionSequence(cell, dir).forEachIndexed { i, cell ->
+                    if (i == winLength) return chip
+                    if (this[cell] != chip) return@forEachIndexed
                 }
             }
         }
