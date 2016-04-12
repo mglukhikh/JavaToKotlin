@@ -1,0 +1,43 @@
+package _3_polish.java;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static _3_polish.java.ArithmeticStack.*;
+
+public class Calculator {
+
+    static private Map<String, Operation> operationMap = new HashMap<>();
+    static {
+        operationMap.put("+", Operation.PLUS);
+        operationMap.put("-", Operation.MINUS);
+        operationMap.put("*", Operation.TIMES);
+        operationMap.put("/", Operation.DIV);
+    }
+
+    static public double calc(String expr) {
+        final ArithmeticStack stack = new ArithmeticStack();
+//        Arrays.asList(expr.split(" ")).forEach(s -> {
+//            Operation op = operationMap.get(s);
+//            if (op==null) {
+//                double x = Double.parseDouble(s);
+//                stack.push(x);
+//            }
+//            else {
+//                stack.execute(op);
+//            }
+//        });
+        final String[] args = expr.split(" ");
+        for (String arg: args) {
+            Operation op = operationMap.get(arg);
+            if (op==null) {
+                double x = Double.parseDouble(arg);
+                stack.push(x);
+            }
+            else {
+                stack.execute(op);
+            }
+        }
+        return stack.top();
+    }
+}
