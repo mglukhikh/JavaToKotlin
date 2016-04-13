@@ -2,16 +2,23 @@ package _3_polish.java;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.function.BiFunction;
 
 public class ArithmeticStack {
 
     private final Deque<Double> stack = new LinkedList<Double>();
 
     public enum Operation {
-        PLUS,
-        MINUS,
-        TIMES,
-        DIV
+        PLUS((x, y) -> x + y),
+        MINUS((x, y) -> y - x),
+        TIMES((x, y) -> x * y),
+        DIV((x, y) -> y / x);
+
+        final BiFunction<Double, Double, Double> function;
+
+        Operation(BiFunction<Double, Double, Double> function) {
+            this.function = function;
+        }
     }
 
     public void push(double x) {
@@ -22,40 +29,7 @@ public class ArithmeticStack {
         return stack.peek();
     }
 
-    private void plus() {
-        stack.push(stack.pop() + stack.pop());
-    }
-
-    private void minus() {
-        double x = stack.pop();
-        double y = stack.pop();
-        stack.push(y - x);
-    }
-
-    private void times() {
-        stack.push(stack.pop() * stack.pop());
-    }
-
-    private void div() {
-        double x = stack.pop();
-        double y = stack.pop();
-        stack.push(y / x);
-    }
-
     public void execute(Operation op) {
-        switch (op) {
-            case PLUS:
-                plus();
-                break;
-            case MINUS:
-                minus();
-                break;
-            case TIMES:
-                times();
-                break;
-            case DIV:
-                div();
-                break;
-        }
+        stack.push(op.function.apply(stack.pop(), stack.pop()));
     }
 }

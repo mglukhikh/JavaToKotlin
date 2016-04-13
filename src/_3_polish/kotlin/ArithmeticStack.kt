@@ -8,7 +8,7 @@ class ArithmeticStack {
     private val stack = LinkedList<Double>()
 
     // Enums and lambdas
-    enum class Operation(internal val op: (Double, Double) -> Double) {
+    enum class Operation(internal val function: (Double, Double) -> Double) {
         PLUS({ x, y -> x + y }),
         MINUS({ x, y -> y - x }),
         TIMES({ x, y -> x * y }),
@@ -21,5 +21,5 @@ class ArithmeticStack {
     fun top() = stack.peek()
 
     // Lambda invocation
-    fun execute(op: Operation) = stack.push(op.op(stack.pop(), stack.pop()))
+    fun execute(op: Operation) = stack.push(op.function(stack.pop(), stack.pop()))
 }
