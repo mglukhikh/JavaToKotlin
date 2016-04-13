@@ -63,7 +63,7 @@ public class FourInRow {
     }
 
     public FourInRow() {
-        this(7, 4, 4);
+        this(7, 6, 4);
     }
 
     public Chip get(int x, int y) {
