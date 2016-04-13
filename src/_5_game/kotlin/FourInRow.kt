@@ -2,7 +2,7 @@ package _5_game.kotlin
 
 import java.util.*
 
-class FourInRow(private val width: Int = 7, private val height: Int = 4, private val winLength: Int = 4) {
+class FourInRow(private val width: Int = 7, private val height: Int = 6, private val winLength: Int = 4) {
 
     enum class Chip {
         YELLOW,
