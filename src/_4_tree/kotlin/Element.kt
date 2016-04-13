@@ -4,10 +4,11 @@ package _4_tree.kotlin
 sealed class Element<Key : Comparable<Key>, out Value>(val key: Key, val value: Value) {
     class Leaf<Key : Comparable<Key>, Value>(key: Key, value: Value) : Element<Key, Value>(key, value)
 
-    class Tree<Key : Comparable<Key>, Value>(key: Key, value: Value,
-                           val left: Element<Key, Value>?,
-                           val right: Element<Key, Value>? = null) :
-            Element<Key, Value>(key, value)
+    class Tree<Key : Comparable<Key>, Value>(
+            key: Key, value: Value,
+            val left: Element<Key, Value>?,
+            val right: Element<Key, Value>? = null
+    ) : Element<Key, Value>(key, value)
 
     fun search(key: Key): Value? =
             if (this.key == key) value
