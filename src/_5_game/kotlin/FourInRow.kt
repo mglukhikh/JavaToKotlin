@@ -11,13 +11,9 @@ class FourInRow(private val width: Int = 7, private val height: Int = 4, private
         fun opposite() = if (this == YELLOW) RED else YELLOW
     }
 
-    data class Cell(private val x: Int, private val y: Int) {
+    data class Cell(internal val x: Int, internal val y: Int) {
 
-        operator fun plus(arg: Cell): Cell {
-            return Cell(x + arg.x, y + arg.y)
-        }
-
-        fun correct(field: FourInRow) = x >= 0 && x < field.width && y >= 0 && y < field.height
+        operator fun plus(arg: Cell) = Cell(x + arg.x, y + arg.y)
     }
 
     private val chips = HashMap<Cell, Chip>()
@@ -53,6 +49,8 @@ class FourInRow(private val width: Int = 7, private val height: Int = 4, private
 
     private val directions = arrayOf(Cell(0, 1), Cell(1, 0), Cell(1, 1), Cell(1, -1))
 
+    private fun correct(cell: Cell) = cell.x >= 0 && cell.x < width && cell.y >= 0 && cell.y < height
+
     fun winner(): Chip? {
         for (x in 0..width - 1) {
             for (y in 0..height - 1) {
@@ -63,7 +61,7 @@ class FourInRow(private val width: Int = 7, private val height: Int = 4, private
                     var current = cell
                     while (++length < winLength) {
                         current += dir
-                        if (!current.correct(this)) break
+                        if (!correct(current)) break
                         if (this[current] != start) break
                     }
                     if (length == winLength) {

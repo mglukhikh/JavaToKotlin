@@ -29,10 +29,6 @@ public class FourInRow {
             return new Cell(x + arg.x, y + arg.y);
         }
 
-        public boolean correct(FourInRow field) {
-            return x >= 0 && x < field.width && y >= 0 && y < field.height;
-        }
-
         public boolean equals(Object obj) {
             if (this == obj) return true;
             if (obj instanceof Cell) {
@@ -108,6 +104,10 @@ public class FourInRow {
             new Cell(0, 1), new Cell(1, 0), new Cell(1, 1), new Cell(1, -1)
     };
 
+    private boolean correct(Cell cell) {
+        return cell.x >= 0 && cell.x < width && cell.y >= 0 && cell.y < height;
+    }
+
     public Chip winner() {
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
@@ -119,7 +119,7 @@ public class FourInRow {
                     Cell current = cell;
                     while (++length < winLength) {
                         current = current.plus(dir);
-                        if (!current.correct(this)) break;
+                        if (!correct(current)) break;
                         if (get(current) != start) break;
                     }
                     if (length == winLength) {
