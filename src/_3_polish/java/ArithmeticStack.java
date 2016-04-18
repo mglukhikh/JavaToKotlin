@@ -9,15 +9,19 @@ public class ArithmeticStack {
     private final Deque<Double> stack = new LinkedList<Double>();
 
     public enum Operation {
-        PLUS((x, y) -> x + y),
-        MINUS((x, y) -> y - x),
-        TIMES((x, y) -> x * y),
-        DIV((x, y) -> y / x);
+        PLUS,
+        MINUS,
+        TIMES,
+        DIV;
 
-        final BiFunction<Double, Double, Double> function;
-
-        Operation(BiFunction<Double, Double, Double> function) {
-            this.function = function;
+        public BiFunction<Double, Double, Double> getFunction() {
+            switch (this) {
+                case PLUS: return (x, y) -> x + y;
+                case MINUS: return (x, y) -> y - x;
+                case TIMES: return (x, y) -> x * y;
+                case DIV: return (x, y) -> y / x;
+                default: throw new AssertionError("Non-exhaustive when");
+            }
         }
     }
 
@@ -30,6 +34,6 @@ public class ArithmeticStack {
     }
 
     public void execute(Operation op) {
-        stack.push(op.function.apply(stack.pop(), stack.pop()));
+        stack.push(op.getFunction().apply(stack.pop(), stack.pop()));
     }
 }
