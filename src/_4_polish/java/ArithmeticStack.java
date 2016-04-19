@@ -1,4 +1,4 @@
-package _3_polish.java;
+package _4_polish.java;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 
 public class ArithmeticStack {
 
-    private final Deque<Double> stack = new LinkedList<Double>();
+    private final Deque<Double> stack = new LinkedList<>();
 
     public enum Operation {
         PLUS,

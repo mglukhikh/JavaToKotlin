@@ -1,4 +1,4 @@
-package _3_polish.java;
+package _4_polish.java;
 
 import org.junit.Test;
 

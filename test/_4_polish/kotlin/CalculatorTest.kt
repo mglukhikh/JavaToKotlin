@@ -1,4 +1,4 @@
-package _3_polish.kotlin
+package _4_polish.kotlin
 
 import org.junit.Test
 

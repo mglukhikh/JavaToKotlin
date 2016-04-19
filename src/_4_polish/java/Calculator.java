@@ -1,10 +1,10 @@
-package _3_polish.java;
+package _4_polish.java;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static _3_polish.java.ArithmeticStack.*;
+import static _4_polish.java.ArithmeticStack.*;
 
 public class Calculator {
 

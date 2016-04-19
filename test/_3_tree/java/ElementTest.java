@@ -1,4 +1,4 @@
-package _4_tree.java;
+package _3_tree.java;
 
 import org.junit.Test;
 

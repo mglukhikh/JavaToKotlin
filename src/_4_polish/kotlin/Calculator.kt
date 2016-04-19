@@ -1,6 +1,6 @@
-package _3_polish.kotlin
+package _4_polish.kotlin
 
-import _3_polish.kotlin.ArithmeticStack.Operation.*
+import _4_polish.kotlin.ArithmeticStack.Operation.*
 
 // Singleton
 object Calculator {
@@ -30,10 +30,8 @@ object Calculator {
         // Extension: for-each
         expr.split(" ").forEach {
             // it = single argument
-            // let: receiver --> argument
-            operationMap[it]?.let { op -> stack.execute(op) }
-            // elvis, toDouble()
-            ?: stack.push( it.toDouble() )
+            // let: receiver --> argument                     // elvis, toDouble()
+            operationMap[it]?.let { op -> stack.execute(op) } ?: stack.push( it.toDouble() )
         }
         return stack.top()
     }

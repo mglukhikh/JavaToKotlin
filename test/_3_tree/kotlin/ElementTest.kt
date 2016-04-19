@@ -1,7 +1,7 @@
-package _4_tree.kotlin
+package _3_tree.kotlin
 
-import _4_tree.kotlin.Element.Leaf
-import _4_tree.kotlin.Element.Tree
+import _3_tree.kotlin.Element.Leaf
+import _3_tree.kotlin.Element.Tree
 import org.junit.Test
 
 import org.junit.Assert.*
