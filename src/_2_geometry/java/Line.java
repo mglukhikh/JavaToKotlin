@@ -1,5 +1,7 @@
 package _2_geometry.java;
 
+//import _2_geometry.kotlin.Point;
+
 // ax + by - 1 = 0
 public class Line {
     private final double a;
