@@ -7,27 +7,11 @@ class ArithmeticStack {
     // Type inference
     private val stack = LinkedList<Double>()
 
-    // Enums and lambdas
-    enum class Operation {
-        PLUS,
-        MINUS,
-        TIMES,
-        DIV;
-
-        val function: (Double, Double) -> Double
-            get() = when (this) {
-                PLUS ->  { x, y -> x + y }
-                MINUS -> { x, y -> y - x }
-                TIMES -> { x, y -> x * y }
-                DIV ->   { x, y -> y / x }
-            }
-    }
-
     // Expression function syntax
     fun push(x: Double) = stack.push(x)
 
     fun top() = stack.peek()
 
     // Lambda invocation
-    fun execute(op: Operation) = stack.push(op.function(stack.pop(), stack.pop()))
+    fun execute(op: (Double, Double) -> Double) = stack.push(op(stack.pop(), stack.pop()))
 }

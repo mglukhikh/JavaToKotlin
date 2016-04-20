@@ -1,14 +1,12 @@
 package _4_polish.kotlin
 
-import _4_polish.kotlin.ArithmeticStack.Operation.*
-
 // Singleton
 object Calculator {
-    private val operationMap = mapOf(
-            "+" to PLUS,
-            "-" to MINUS,
-            "*" to TIMES,
-            "/" to DIV
+    private val operationMap = mapOf<String, (Double, Double) -> Double>(
+            "+" to { x, y -> x + y },
+            "-" to { x, y -> y - x },
+            "*" to { x, y -> x * y },
+            "/" to { x, y -> x / y }
     )
 
     fun calc(expr: String): Double {
