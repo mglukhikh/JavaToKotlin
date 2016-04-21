@@ -1,5 +1,6 @@
 package _2_exceptions.kotlin
 
+// TODO: comment both foo in this file
 fun foo(arr: Array<String>) {
     // Error! Arrays are invariant in Kotlin
     val anyArr: Array<Any> = arr
