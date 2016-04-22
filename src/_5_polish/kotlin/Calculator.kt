@@ -8,7 +8,7 @@ object Calculator {
             "+" to { x, y -> x + y },
             "-" to { x, y -> y - x },
             "*" to { x, y -> x * y },
-            "/" to { x, y -> x / y }
+            "/" to { x, y -> y / x }
     )
 
     fun Stack<Double>.execute(op: (Double, Double) -> Double) = push(op(pop(), pop()))
