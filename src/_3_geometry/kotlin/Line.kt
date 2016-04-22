@@ -7,7 +7,7 @@ class Line(val a: Double, val b: Double)
 
 // ax1 + by1 = 1
 // ax2 + by2 = 1
-fun create(p1: Point, p2: Point): Line {
+fun createLine(p1: Point, p2: Point): Line {
     val d = p1.x * p2.y - p1.y * p2.x
     val da = p2.y - p1.y
     val db = p1.x - p2.x
